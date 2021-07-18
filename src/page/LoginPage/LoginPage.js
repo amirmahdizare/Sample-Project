@@ -7,11 +7,15 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Checkbox from '@material-ui/core/Checkbox';
+import {Authentication} from '../../APIs/login'
 const LoginPage = () => {
     const [state,setState] = useState({
         username:'',
-        password:''
+        password:'',
+        rememberme:false
     })
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -51,15 +55,20 @@ const LoginPage = () => {
       const handleTextFieldChange = (id,value) =>{
           setState({...state,[id]:value})
       }
+      const handleCheckboxChange = () =>{
+        setState({...state,rememberme:!state.rememberme})
+      }
       const handleLogIn = async(e) =>{
           e.preventDefault()
+        //   if(await Authentication(state.username,state.password))
+        //   history.pushState()
         }
+        console.log(state)
     return (
         <>
         <CssBaseline />
        <Container className={classes.root} maxWidth="sm" fixed spacing={2}>
-        {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
-       <form>
+       <form onSubmit={handleLogIn}>
        <AccountCircleIcon className={classes.icon}   />
        <h1>Login</h1>
        <Grid  container spacing={6} > 
@@ -67,10 +76,13 @@ const LoginPage = () => {
            <TextField hintStyle={{ width: '600px', textAlign: 'center' }} id="username" required  variant="outlined" className={classes.input} label="Username" value={state.username} onChange={(e) => handleTextFieldChange(e.target.id ,e.target.value)}/>
         </Grid>
         <Grid className={classes.gridContainer} item xs={12}>
-            <TextField type="password" required variant="outlined" id="password" className={classes.input}  label="Password" value={state.password} onChange={(e) => handleTextFieldChange(e.target.id,e.target.value)} />
+            <TextField required variant="outlined" id="password" className={classes.input}  label="Password" value={state.password} onChange={(e) => handleTextFieldChange(e.target.id,e.target.value)} />
             </Grid>
-        
-        <Grid className={classes.gridContainer} item xs={12}> <Button type="submit" onClick={handleLogIn} className={classes.button}   variant="contained" color="secondary" >Sign in</Button></Grid>
+        <Grid className={classes.gridContainer} item xs={12}> <FormControlLabel
+        control={<Checkbox checked={state.rememberme} onChange={handleCheckboxChange}  />}
+        label="Remember Me"
+      /></Grid>
+        <Grid className={classes.gridContainer} item xs={12}> <Button type="submit"  className={classes.button}   variant="contained" color="secondary" >Sign in</Button></Grid>
 
       
         </Grid>
