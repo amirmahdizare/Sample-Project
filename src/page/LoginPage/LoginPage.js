@@ -8,6 +8,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { useHistory } from 'react-router-dom';
 import {Authentication} from '../../APIs/login'
 const LoginPage = () => {
     const [state,setState] = useState({
@@ -15,6 +16,9 @@ const LoginPage = () => {
         password:'',
         rememberme:false
     })
+
+    const History = useHistory();
+
     const useStyles = makeStyles((theme) => ({
         root: {
             borderRadius:'10px',
@@ -58,7 +62,8 @@ const LoginPage = () => {
       }
       const handleLogIn = async(e) =>{
           e.preventDefault()
-        //   if(await Authentication(state.username,state.password,state.rememberme))
+          if(await Authentication(state.username,state.password,state.rememberme))
+          History.push('/home')
         }
     return (
         <>
