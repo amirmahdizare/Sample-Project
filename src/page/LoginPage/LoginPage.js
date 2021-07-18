@@ -4,11 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Checkbox from '@material-ui/core/Checkbox';
 import {Authentication} from '../../APIs/login'
 const LoginPage = () => {
@@ -60,13 +58,10 @@ const LoginPage = () => {
       }
       const handleLogIn = async(e) =>{
           e.preventDefault()
-        //   if(await Authentication(state.username,state.password))
-        //   history.pushState()
+        //   if(await Authentication(state.username,state.password,state.rememberme))
         }
-        console.log(state)
     return (
         <>
-        <CssBaseline />
        <Container className={classes.root} maxWidth="sm" fixed spacing={2}>
        <form onSubmit={handleLogIn}>
        <AccountCircleIcon className={classes.icon}   />
