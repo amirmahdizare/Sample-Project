@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { LoginPage } from '../page/index'
+import { LoginPage ,HomePage} from '../page/index'
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,11 +11,9 @@ const AppRoute = () =>  {
             <>
                 <Router>
                     <Switch>                    
-                    {/* <Route exact path="/login" > */}
-                    <Route path="/home" children={"HomePage Component"}/>
+                    <Route path="/home" children={<HomePage/>}/>
                     <Route path="/login" children={<LoginPage/>}/> 
                     <Route path="/" children={<Redirect to="/login"/>}/> 
-
                     </Switch>
                 </Router>
             </>
